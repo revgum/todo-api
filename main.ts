@@ -1,5 +1,6 @@
+import { cors } from "@momiji/cors";
 import { Application, Router, Status } from "@oak/oak";
-import { API_PORT, KV_PATH } from "./constants.ts";
+import { API_PORT, CORS_OPTIONS, KV_PATH } from "./constants.ts";
 import { authorize, setResponseHeaders } from "./middleware.ts";
 import { create, deleteById, getAll, getById, update } from "./todos.ts";
 
@@ -47,8 +48,11 @@ router.delete("/:id", async (ctx) => {
 });
 
 const app = new Application();
+
+app.use(cors(CORS_OPTIONS));
 app.use(authorize);
 app.use(setResponseHeaders);
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 

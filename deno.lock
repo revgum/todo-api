@@ -2,6 +2,7 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "jsr:@momiji/cors@^1.0.1": "jsr:@momiji/cors@1.0.1",
       "jsr:@oak/commons@0.11": "jsr:@oak/commons@0.11.0",
       "jsr:@oak/oak@^16.1.0": "jsr:@oak/oak@16.1.0",
       "jsr:@std/assert@0.223": "jsr:@std/assert@0.223.0",
@@ -25,6 +26,12 @@
       "npm:path-to-regexp@6.2.1": "npm:path-to-regexp@6.2.1"
     },
     "jsr": {
+      "@momiji/cors@1.0.1": {
+        "integrity": "2cab5fd27ec2a978380ad8ae2d93ced813070b64c78a739e17eda007f928e5e2",
+        "dependencies": [
+          "jsr:@oak/oak@^16.1.0"
+        ]
+      },
       "@oak/commons@0.11.0": {
         "integrity": "07702bfe5c07cd8144c422022994da1f9fea466b185824f4be63a2b1b1a65125",
         "dependencies": [
@@ -129,6 +136,7 @@
   "remote": {},
   "workspace": {
     "dependencies": [
+      "jsr:@momiji/cors@^1.0.1",
       "jsr:@oak/oak@^16.1.0"
     ]
   }
