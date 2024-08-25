@@ -15,6 +15,7 @@ export const loginRouter = new Router({ prefix: "/login" })
         signed: true,
         maxAge: 60 * 60 * 24,
         sameSite: COOKIE_SAME_SITE as CookiesSetDeleteOptions["sameSite"],
+        secure: true,
       });
       ctx.response.status = Status.OK;
     } else {
