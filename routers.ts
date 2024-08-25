@@ -1,5 +1,10 @@
 import { CookiesSetDeleteOptions, Router, Status } from "@oak/oak";
-import { API_TOKEN, COOKIE_SAME_SITE, KV_PATH } from "./constants.ts";
+import {
+  API_TOKEN,
+  COOKIE_SAME_SITE,
+  IS_DEPLOYED,
+  KV_PATH,
+} from "./constants.ts";
 import { create, deleteById, getAll, getById, update } from "./todos.ts";
 
 const kv = await Deno.openKv(KV_PATH);
@@ -15,7 +20,7 @@ export const loginRouter = new Router({ prefix: "/login" })
         signed: true,
         maxAge: 60 * 60 * 24,
         sameSite: COOKIE_SAME_SITE as CookiesSetDeleteOptions["sameSite"],
-        secure: true,
+        secure: IS_DEPLOYED,
       });
       ctx.response.status = Status.OK;
     } else {

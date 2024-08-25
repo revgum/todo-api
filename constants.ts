@@ -13,7 +13,7 @@ export const KV_PATH = IS_DEPLOYED ? undefined : "./database";
 export const TODO_KEY = "todos";
 
 export const CORS_OPTIONS: CorsOptions = {
-  origin: IS_DEPLOYED ? Deno.env.get("CORS_ORIGIN") : "*",
+  origin: Deno.env.get("CORS_ORIGIN") || "*",
   credentials: true,
   maxAge: 86400,
 };
