@@ -8,7 +8,7 @@ export const COOKIE_SIGNING_KEY = Deno.env.get("COOKIE_SIGNING_KEY") ||
   "signing-key-not-set";
 export const COOKIE_SAME_SITE = Deno.env.get("COOKIE_SAME_SITE") ||
   "none";
-export const KV_PATH = IS_DEPLOYED ? undefined : "./database";
+export const KV_PATH = IS_DEPLOYED ? undefined : "./db/database";
 
 export const TODO_KEY = "todos";
 

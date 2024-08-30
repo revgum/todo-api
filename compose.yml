@@ -1,0 +1,38 @@
+services:
+  litestream-restore:
+    image: litestream/litestream
+    command: restore -if-db-not-exists -if-replica-exists -o ./db/database ./db/database
+    volumes:
+      - ./db:/db
+      - type: bind
+        source: ./litestream.yml
+        target: /etc/litestream.yml
+
+  litestream-replicate:
+    image: litestream/litestream
+    command: replicate
+    healthcheck:
+      test: sh -c '[ -f /db/database ]'
+      start_period: 5s
+      start_interval: 1s
+      interval: 10s
+      retries: 3
+    depends_on:
+      litestream-restore:
+        condition: service_completed_successfully
+    volumes:
+      - ./db:/db
+      - type: bind
+        source: ./litestream.yml
+        target: /etc/litestream.yml
+
+  api:
+    build: ./
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+      - ./db:/db
+    depends_on:
+      litestream-replicate:
+        condition: service_healthy

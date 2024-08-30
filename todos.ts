@@ -25,7 +25,8 @@ export const create = async (
   record: Omit<Todo, "id">,
 ): Promise<Todo | undefined> => {
   const id = crypto.randomUUID();
-  const todo = { ...record, id };
+  const createdAt = new Date().toISOString();
+  const todo = { ...record, id, createdAt };
   const { ok } = await kv.set([TODO_KEY, id], todo);
   if (ok) {
     return todo;

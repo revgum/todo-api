@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "dev": "deno run --env-file -A --unstable-kv main.ts"
+    "dev": "deno run --env-file -A --unstable-kv main.ts",
+    "prod": "deno run --env-file -A --unstable-kv main.ts"
   },
   "imports": {
     "@momiji/cors": "jsr:@momiji/cors@^1.0.1",
